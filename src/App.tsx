@@ -1,16 +1,24 @@
-import styled, { createGlobalStyle } from "styled-components"
+import { useState } from "react";
+import styled, { createGlobalStyle } from "styled-components";
 
 // import components
-import Header from "./components/Header Component/Header"
+import Header from "./components/Header Component/Header";
 
+interface GlobalStyleProps {
+  isDarkMode: boolean;
+}
 
-const GlobalStyles = createGlobalStyle`
+const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
 
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
+
+  html{
+    line-height: 1.5;
+    font-family: 'Roboto', sans-serif !important;
+  }
 
   *{
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif !important;
   }
 
   html, body, div, span, applet, object, iframe,
@@ -40,7 +48,11 @@ const GlobalStyles = createGlobalStyle`
   }
   body {
     line-height: 1;
-    background-color: #eee;
+    background-color: ${(props) => (props.isDarkMode ? "#181818" : "#f2f0ee")};
+    @media screen and (min-width:750px){
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
   }
   ol, ul , li {
     list-style: none;
@@ -58,25 +70,35 @@ const GlobalStyles = createGlobalStyle`
     border-spacing: 0;
   }
 
+  :root{
+    --primary-color : #58595b;
+  }
 
-`
+`;
 
 export const Container = styled.div`
-  max-width: 1344px;
+  max-width: 1150px;
   width: 100%;
   margin: auto;
-`
+  background-color: #ffffff;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
 
+  @media screen and (min-width: 750px) {
+    padding: 2rem;
+  }
+`;
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   return (
     <>
-      <GlobalStyles/>
-      <Header/>
+      <GlobalStyles isDarkMode={isDarkMode} />
+      <Header />
     </>
-  )
+  );
 }
 
-export default App
-
+export default App;
