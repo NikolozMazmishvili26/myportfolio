@@ -3,6 +3,8 @@ import styled, { createGlobalStyle } from "styled-components";
 
 // import components
 import Header from "./components/Header Component/Header";
+import Landing from "./components/Landing Component/Landing";
+import Service from "./components/Service Component/Service";
 
 interface GlobalStyleProps {
   isDarkMode: boolean;
@@ -72,11 +74,14 @@ const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
 
   :root{
     --primary-color : #58595b;
+    --secondary-color : #e45447;
+    --light-color : #f2f0ee;
   }
 
 `;
 
 export const Container = styled.div`
+  position: relative;
   max-width: 1150px;
   width: 100%;
   margin: auto;
@@ -90,14 +95,22 @@ export const Container = styled.div`
   }
 `;
 
+export const ContentContainer = styled.div`
+  max-width: 960px;
+  width: 100%;
+  margin: auto;
+`;
+
 function App() {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   return (
-    <>
+    <Container>
       <GlobalStyles isDarkMode={isDarkMode} />
       <Header />
-    </>
+      <Landing />
+      <Service />
+    </Container>
   );
 }
 

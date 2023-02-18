@@ -39,8 +39,18 @@ function Header() {
     };
   }, []);
 
+  // avoid scroll when navbar is open
+
+  useEffect(() => {
+    if (isNavbarOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isNavbarOpen]);
+
   return (
-    <Container>
+    <>
       <MainHeader>
         <HeaderLeftSide>
           {" "}
@@ -104,7 +114,7 @@ function Header() {
       {/* background blur when isNavbarOpen true */}
       <BackgroundBlur isNavbarOpen={isNavbarOpen} />
       {/*  */}
-    </Container>
+    </>
   );
 }
 
@@ -114,6 +124,12 @@ const MainHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (min-width: 750px) {
+    max-width: 960px;
+    width: 100%;
+    margin: auto;
+  }
 `;
 
 const HeaderLeftSide = styled.div`
@@ -126,6 +142,10 @@ const HeaderLeftSide = styled.div`
 const HeaderImage = styled.img`
   width: 48px;
   cursor: pointer;
+
+  @media screen and (min-width: 750px) {
+    display: none;
+  }
 `;
 
 // EmailBox styles
@@ -133,7 +153,6 @@ const HeaderImage = styled.img`
 const EmailBox = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 6rem;
   gap: 7px;
   transition: all 0.2s;
 
@@ -223,7 +242,7 @@ const HeaderNav = styled.nav.withConfig({
   left: 0px;
   z-index: 9999;
   width: 67%;
-  height: 100%;
+  height: 100vh;
   background-color: #f4f4f4;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
   padding-top: 2.5rem;
