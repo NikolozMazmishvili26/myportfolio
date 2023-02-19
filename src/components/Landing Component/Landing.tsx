@@ -97,6 +97,8 @@ const LandingTitle = styled.h1`
   line-height: 1;
   font-weight: 700;
   margin-top: 25px;
+  word-wrap: break-word;
+  width: 100%;
 
   @media screen and (min-width: 750px) {
     text-align: start;

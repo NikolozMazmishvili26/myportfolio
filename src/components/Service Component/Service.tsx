@@ -1,13 +1,31 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 // import styled Components
 import { ContentContainer } from "../../App";
 
 // import assets
-import programmer from "../../assets/programmer.png";
 import programming from "../../assets/programming.svg";
+import ServiceSkillsBox from "./ServiceSkillsBox";
 
-function Service() {
+// import data
+import { SkillsBoxData } from "./SkillsBoxData";
+
+// interfaces
+interface ServiceProps {
+  isDarkMode: boolean;
+}
+
+export interface SkillsBoxDataProps {
+  id: number;
+  title: string;
+  description: string;
+}
+
+function Service({ isDarkMode }: ServiceProps) {
+  const [skillsBoxData, setSkillsBoxData] =
+    useState<SkillsBoxDataProps[]>(SkillsBoxData);
+
   return (
     <ContentContainer>
       <ServiceContainer>
@@ -17,47 +35,31 @@ function Service() {
           <UnderlineCircle />
           <Underline />
         </UnderlineContainer>
+
         {/* Skills Container */}
-        <SkillsContainer>
+        <SkillsContainer isDarkMode={isDarkMode}>
+          {/* Skills Left Side */}
           <SkillsLeftSide>
             {/*  */}
             <SkillsBoxContainer>
-              <SkillsBox>
-                <SkillsTitle>FRONTEND APPS</SkillsTitle>
-                <SkillsDescription>
-                  Build client-side applications with modern features like SPA
-                  and maintain semantic coding style among other best practices
-                  for SEO optimisation. Use modern tech such as Nuxt (Vue.js),
-                  TailwindCSS, and GSAP.
-                </SkillsDescription>
-              </SkillsBox>
-
-              <SkillsBox>
-                <SkillsTitle>BACKEND APPS</SkillsTitle>
-                <SkillsDescription>
-                  Build scalable and maintainable server applications using
-                  cutting-edge technologies such as Nest.js, Docker, and MongoDB
-                </SkillsDescription>
-              </SkillsBox>
-
-              <SkillsBox>
-                <SkillsTitle>NATIVE APPS</SkillsTitle>
-                <SkillsDescription>
-                  Use Flutter for building simple native mobile applications.
-                  Flutter is modern, fast, cross-platform, and popular.
-                </SkillsDescription>
-              </SkillsBox>
+              {skillsBoxData.map((item: SkillsBoxDataProps) => {
+                return <ServiceSkillsBox key={item.id} item={item} />;
+              })}
             </SkillsBoxContainer>
             {/*  */}
             <MyWorksBox>
               <MyWorksTitle>SEE MY WORKS</MyWorksTitle>
             </MyWorksBox>
           </SkillsLeftSide>
+          {/* END skills Left Side */}
+
           {/* ------ right side */}
           <SkillsRightSide>
             <SkillsProgrammerImage src={programming} alt="programmerImage" />
           </SkillsRightSide>
+          {/* END Skills Right Side */}
         </SkillsContainer>
+        {/* END Skills Container */}
       </ServiceContainer>
     </ContentContainer>
   );
@@ -89,20 +91,20 @@ const ServiceDescription = styled.p`
 
 // Underline styles
 
-const UnderlineContainer = styled.div`
+export const UnderlineContainer = styled.div`
   display: flex;
   align-items: center;
   margin-top: 1rem;
 `;
 
-const UnderlineCircle = styled.div`
+export const UnderlineCircle = styled.div`
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background-color: var(--secondary-color);
 `;
 
-const Underline = styled.div`
+export const Underline = styled.div`
   width: 128px;
   height: 3.19px;
   background-color: var(--secondary-color);
@@ -110,10 +112,12 @@ const Underline = styled.div`
 
 // Skills Container
 
-const SkillsContainer = styled.div`
+const SkillsContainer = styled.div<ServiceProps>`
   max-width: 960px;
   width: 100%;
-  background-color: var(--light-color);
+  background-color: ${(props) =>
+    props.isDarkMode ? "var(--dark-mode)" : "var(--light-color)"};
+  border: ${(props) => props.isDarkMode && "1px solid #e2e8f0"};
   border-radius: 0.5rem;
   padding: 1.25rem;
   margin-top: 2.5rem;
@@ -147,27 +151,6 @@ const SkillsBoxContainer = styled.div`
   }
 `;
 
-const SkillsBox = styled.div``;
-
-const SkillsTitle = styled.h1`
-  font-size: 18px;
-  text-align: center;
-  color: var(--primary-color);
-  font-weight: 700;
-`;
-const SkillsDescription = styled.div`
-  margin-top: 0.75rem;
-  font-size: 16px;
-  color: var(--primary-color);
-  line-height: 1.5;
-  text-align: center;
-
-  @media screen and (min-width: 750px) {
-    margin-top: 1rem;
-    font-size: 16.3px;
-  }
-`;
-
 // Skills RightSide Styles
 
 const SkillsRightSide = styled.div`
@@ -189,6 +172,7 @@ const MyWorksTitle = styled.p`
   width: 200px;
   font-size: 20px;
   font-weight: 700;
+  word-wrap: break-word;
 `;
 
 const MyWorksBox = styled.div`
@@ -201,7 +185,6 @@ const MyWorksBox = styled.div`
   align-items: center;
   transition: all 0.2s ease-in;
   margin-top: 2rem;
-  margin-left: 3rem;
 
   &:hover {
     cursor: pointer;
@@ -211,9 +194,5 @@ const MyWorksBox = styled.div`
     & ${MyWorksTitle} {
       color: #ffffff;
     }
-  }
-
-  @media screen and (min-width: 750px) {
-    margin-left: 5.5rem;
   }
 `;

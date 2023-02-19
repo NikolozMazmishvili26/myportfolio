@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled, { createGlobalStyle } from "styled-components";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// import components
-import Header from "./components/Header Component/Header";
-import Landing from "./components/Landing Component/Landing";
-import Service from "./components/Service Component/Service";
+// import pages
+import LandingPage from "./Pages/Landing Page/LandingPage";
 
 interface GlobalStyleProps {
   isDarkMode: boolean;
@@ -50,7 +49,8 @@ const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
   }
   body {
     line-height: 1;
-    background-color: ${(props) => (props.isDarkMode ? "#181818" : "#f2f0ee")};
+    background-color: ${(props) =>
+      props.isDarkMode ? "var(--dark-mode)" : "#f2f0ee"};
     @media screen and (min-width:750px){
       padding-top: 4rem;
       padding-bottom: 4rem;
@@ -76,16 +76,18 @@ const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
     --primary-color : #58595b;
     --secondary-color : #e45447;
     --light-color : #f2f0ee;
+    --dark-mode : #0d1017
   }
 
 `;
 
-export const Container = styled.div`
+export const Container = styled.div<{ isDarkMode: boolean }>`
   position: relative;
   max-width: 1150px;
   width: 100%;
   margin: auto;
-  background-color: #ffffff;
+  background-color: ${(props) =>
+    props.isDarkMode ? "var(--dark-mode)" : "#ffffff"};
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
   border-radius: 0.5rem;
   padding: 0.5rem;
@@ -102,16 +104,87 @@ export const ContentContainer = styled.div`
 `;
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const storedDarkMode = localStorage.getItem("darkMode");
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(
+    storedDarkMode !== null ? JSON.parse(storedDarkMode) : false
+  );
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(isDarkMode));
+  }, [isDarkMode]);
 
   return (
-    <Container>
+    <>
       <GlobalStyles isDarkMode={isDarkMode} />
-      <Header />
-      <Landing />
-      <Service />
-    </Container>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <LandingPage
+                isDarkMode={isDarkMode}
+                setIsDarkMode={setIsDarkMode}
+              />
+            }
+          ></Route>
+        </Routes>
+      </BrowserRouter>
+      {/*  */}
+      <CopyrightContainer>
+        <CopyrightTitle>© 2023 NIKOLOZ MAZMISHVILI.</CopyrightTitle>
+        <CopyrightBoxContainer>
+          <RedBox />
+          <OrangeBox />
+          <GrayBox />
+          <BlueBox />
+        </CopyrightBoxContainer>
+      </CopyrightContainer>
+    </>
   );
 }
 
 export default App;
+
+const CopyrightContainer = styled.div`
+  max-width: 1150px;
+  width: 100%;
+  padding: 2rem;
+  margin: auto;
+  margin-top: 1.25rem;
+
+  @media screen and (min-width: 750px) {
+    margin-top: 3rem;
+  }
+`;
+
+const CopyrightTitle = styled.h1`
+  font-size: 12px;
+  text-align: center;
+  color: var(--primary-color);
+`;
+
+const CopyrightBoxContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  margin-top: 1.5rem;
+`;
+
+const RedBox = styled.div`
+  background-color: #e45447;
+  height: 12px;
+`;
+
+const OrangeBox = styled.div`
+  background-color: #e29d51;
+  height: 12px;
+`;
+
+const GrayBox = styled.div`
+  background-color: #d8c7b8;
+  height: 12px;
+`;
+
+const BlueBox = styled.div`
+  background-color: #607393;
+  height: 12px;
+`;
