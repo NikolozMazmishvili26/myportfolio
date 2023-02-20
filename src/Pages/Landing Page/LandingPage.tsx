@@ -19,14 +19,13 @@ interface LandingPageProps {
 
 function LandingPage({ isDarkMode, setIsDarkMode }: LandingPageProps) {
   return (
-    <Container isDarkMode={isDarkMode}>
-      <Header isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+    <>
       <Landing />
       <Service isDarkMode={isDarkMode} />
-      <Resume isDarkMode={isDarkMode} />
+      {/* <Resume isDarkMode={isDarkMode} /> */}
       <Projects isDarkMode={isDarkMode} />
       <Footer />
-    </Container>
+    </>
   );
 }
 

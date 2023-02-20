@@ -120,6 +120,12 @@ const LandingDescription = styled.p`
   }
 `;
 
+const LetsTalkImage = styled.img`
+  width: 70%;
+  height: 70%;
+  transition-duration: 0.2s;
+`;
+
 const LetsTalkParentContainer = styled.div`
   width: 100px;
   height: 100px;
@@ -131,14 +137,17 @@ const LetsTalkParentContainer = styled.div`
   margin-top: 1.8rem;
   margin-right: auto;
   cursor: pointer;
+
   @media screen and (min-width: 750px) {
     margin: 1.8rem auto;
   }
-`;
 
-const LetsTalkImage = styled.img`
-  width: 70%;
-  height: 70%;
+  &:hover {
+    & ${LetsTalkImage} {
+      width: 100%;
+      height: 100%;
+    }
+  }
 `;
 
 // landing right side styles

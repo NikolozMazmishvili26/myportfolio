@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom";
+import { Location } from "react-router-dom";
 import styled from "styled-components";
 
 // import styled components
@@ -11,6 +13,7 @@ import {
 // import assets
 import app1 from "../../assets/app1.jpg";
 import app2 from "../../assets/app3.avif";
+import ResumeBox from "./ResumeBox";
 
 // interfaces
 interface ProjectsProps {
@@ -18,18 +21,33 @@ interface ProjectsProps {
 }
 
 function Projects({ isDarkMode }: ProjectsProps) {
+  const location = useLocation();
+
   return (
     <ContentContainer>
-      <ProjectsContainer>
-        <ProjectsTitle>My Works</ProjectsTitle>
-        <ProjectsTitleDescription>Some Of My Projects</ProjectsTitleDescription>
-        <UnderlineContainer>
-          <UnderlineCircle />
-          <Underline />
-        </UnderlineContainer>
+      <ProjectsContainer location={location}>
+        {location.pathname !== "/works" ? (
+          <>
+            {" "}
+            <ProjectsTitle>My Works</ProjectsTitle>
+            <ProjectsTitleDescription>
+              Some Of My Projects
+            </ProjectsTitleDescription>
+            <UnderlineContainer>
+              <UnderlineCircle />
+              <Underline />
+            </UnderlineContainer>
+          </>
+        ) : null}
         {/* Aplication Container */}
         <ApplicationContainer>
           <ApplicationTitle>Web Applications</ApplicationTitle>
+          {location.pathname == "/works" && (
+            <UnderlineContainer>
+              <UnderlineCircle />
+              <Underline />
+            </UnderlineContainer>
+          )}
           <ApplicationCardWrapper>
             <ApplicationCard>
               <ApplicationImage src={app1} alt="appImage" />
@@ -40,15 +58,13 @@ function Projects({ isDarkMode }: ProjectsProps) {
           </ApplicationCardWrapper>
         </ApplicationContainer>
         {/*  */}
-        <MyResumeBox isDarkMode={isDarkMode}>
-          <MyResumeTitle>
-            Want to know about my profession? See my resume 👉
-          </MyResumeTitle>
-          {/*  */}
-          <ResumeNavigateBox>
-            <ResumeTitle isDarkMode={isDarkMode}>MY RESUME</ResumeTitle>
-          </ResumeNavigateBox>
-        </MyResumeBox>
+        <ResumeBoxContainer>
+          <ResumeBox
+            isDarkMode={isDarkMode}
+            title="Want to know about my profession? See my resume 👉"
+            resumeTitle="MY RESUME"
+          />
+        </ResumeBoxContainer>
       </ProjectsContainer>
     </ContentContainer>
   );
@@ -56,13 +72,16 @@ function Projects({ isDarkMode }: ProjectsProps) {
 
 export default Projects;
 
-const ProjectsContainer = styled.div`
+const ProjectsContainer = styled.div<{ location: Location }>`
   padding: 20px;
-  margin-top: 3rem;
+  margin-top: ${(props) =>
+    props.location.pathname == "/works" ? "0.5rem" : "3rem"};
 
   @media screen and (min-width: 750px) {
     padding: 0px;
-    margin-top: 8rem;
+    margin-top: ${(props) =>
+      props.location.pathname == "/works" ? "4rem" : "9rem"};
+    /* margin-top: 8rem; */
   }
 `;
 
@@ -123,61 +142,10 @@ const ApplicationCard = styled.div`
 
 //
 
-const MyResumeBox = styled.div<ProjectsProps>`
-  max-width: 576px;
-  width: 100%;
-  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  background-color: ${(props) =>
-    props.isDarkMode ? "var(--dark-mode)" : "#ffffff"};
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
+const ResumeBoxContainer = styled.div`
   margin-top: 2.5rem;
+
   @media screen and (min-width: 750px) {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
     margin-top: 5.5rem;
-    height: 160px;
   }
-`;
-
-const MyResumeTitle = styled.h4`
-  font-size: 18px;
-  color: var(--primary-color);
-  font-weight: 700;
-  line-height: 1.5;
-
-  @media screen and (min-width: 750px) {
-    width: 276px;
-  }
-`;
-
-const ResumeNavigateBox = styled.div`
-  position: relative;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: #e67b71;
-  display: flex;
-  align-items: center;
-  margin-top: 0.75rem;
-  cursor: pointer;
-
-  @media screen and (min-width: 750px) {
-    margin-top: 0px;
-    margin-left: 15px;
-  }
-`;
-
-const ResumeTitle = styled.h1<ProjectsProps>`
-  position: absolute;
-  left: 22px;
-  width: 150px;
-  font-size: 20px;
-  font-weight: 700;
-  color: ${(props) => (props.isDarkMode ? "#3b3737" : "black")};
 `;

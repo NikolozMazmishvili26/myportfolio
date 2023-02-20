@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 // import styled Components
@@ -47,9 +48,11 @@ function Service({ isDarkMode }: ServiceProps) {
               })}
             </SkillsBoxContainer>
             {/*  */}
-            <MyWorksBox>
-              <MyWorksTitle>SEE MY WORKS</MyWorksTitle>
-            </MyWorksBox>
+            <StyledLink to="/works">
+              <MyWorksBox>
+                <MyWorksTitle>SEE MY WORKS</MyWorksTitle>
+              </MyWorksBox>
+            </StyledLink>
           </SkillsLeftSide>
           {/* END skills Left Side */}
 
@@ -173,6 +176,10 @@ const MyWorksTitle = styled.p`
   font-size: 20px;
   font-weight: 700;
   word-wrap: break-word;
+`;
+
+const StyledLink = styled(Link)`
+  color: black;
 `;
 
 const MyWorksBox = styled.div`

@@ -78,6 +78,6 @@ const StyledNavLink = styled(NavLink)<{ isDarkMode: boolean }>`
   &.active {
     color: ${(props) =>
       props.isDarkMode ? "#bbb7b7" : "var(--secondary-color)"};
-    font-weight: 700;
+    font-weight: 600;
   }
 `;

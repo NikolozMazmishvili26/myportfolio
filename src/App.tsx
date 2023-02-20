@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
 import styled, { createGlobalStyle } from "styled-components";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import classNames from "classnames";
 
 // import pages
 import LandingPage from "./Pages/Landing Page/LandingPage";
+import Works from "./Pages/Works Page/Works";
+import Header from "./components/Header Component/Header";
+import ResumePage from "./Pages/Resume Page/ResumePage";
 
 interface GlobalStyleProps {
   isDarkMode: boolean;
@@ -117,17 +122,30 @@ function App() {
     <>
       <GlobalStyles isDarkMode={isDarkMode} />
       <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <LandingPage
-                isDarkMode={isDarkMode}
-                setIsDarkMode={setIsDarkMode}
-              />
-            }
-          ></Route>
-        </Routes>
+        <Container isDarkMode={isDarkMode}>
+          <Header isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+          {/* routes */}
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <LandingPage
+                  isDarkMode={isDarkMode}
+                  setIsDarkMode={setIsDarkMode}
+                />
+              }
+            ></Route>
+            <Route
+              path="/works"
+              element={<Works isDarkMode={isDarkMode} />}
+            ></Route>
+            <Route
+              path="/resume"
+              element={<ResumePage isDarkMode={isDarkMode} />}
+            ></Route>
+          </Routes>
+          {/* routes */}
+        </Container>
       </BrowserRouter>
       {/*  */}
       <CopyrightContainer>

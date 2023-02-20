@@ -71,7 +71,7 @@ const ResumeContainer = styled.div`
 `;
 
 const ResumeBox = styled.div<ResumeProps>`
-  max-width: 450px;
+  max-width: 420px;
   width: 100%;
   background-color: ${(props) =>
     props.isDarkMode ? "var(--dark-mode)" : "var(--light-color)"};
