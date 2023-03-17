@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 // import styled components
 import { ContentContainer } from "../../App";
@@ -6,6 +7,31 @@ import { ContentContainer } from "../../App";
 // import assets
 import letsTalkImage from "../../assets/talk.png";
 import avatarImage from "../../assets/avatar.svg";
+
+const heartVariants = {
+  heartbeat: {
+    scale: [1, 1.3, 1],
+    transition: {
+      duration: 0.6,
+      repeat: Infinity,
+      repeatDelay: 0.4,
+      ease: "easeInOut",
+    },
+  },
+};
+
+const imageVariants = {
+  heartbeat: {
+    rotate: [0, 5, -5, 0],
+    scale: [1, 1.1, 1],
+    transition: {
+      duration: 1.4,
+      repeat: Infinity,
+      repeatDelay: 0.8,
+      ease: "easeInOut",
+    },
+  },
+};
 
 function Landing() {
   return (
@@ -20,12 +46,26 @@ function Landing() {
               building functional and visually appealing apps. Always improving
               skills and excited for future projects with latest front-end tech.
             </LandingDescription>
+            {/*  */}
             <LetsTalkParentContainer>
-              <LetsTalkImage src={letsTalkImage} alt="talkImage" />
+              <LetsTalkImage
+                src={letsTalkImage}
+                alt="talkImage"
+                variants={heartVariants}
+                initial="heartbeat"
+                animate="heartbeat"
+              />
             </LetsTalkParentContainer>
+            {/*  */}
           </LandingLeftSide>
           <LandingRightSide>
-            <AvatarImage src={avatarImage} alt="avatarImage" />
+            <AvatarImage
+              src={avatarImage}
+              alt="avatarImage"
+              variants={imageVariants}
+              initial="heartbeat"
+              animate="heartbeat"
+            />
           </LandingRightSide>
         </LandingContainer>
       </ContentContainer>
@@ -120,7 +160,7 @@ const LandingDescription = styled.p`
   }
 `;
 
-const LetsTalkImage = styled.img`
+const LetsTalkImage = styled(motion.img)`
   width: 70%;
   height: 70%;
   transition-duration: 0.2s;
@@ -161,7 +201,7 @@ const LandingRightSide = styled.div`
   }
 `;
 
-const AvatarImage = styled.img`
+const AvatarImage = styled(motion.img)`
   width: 160px;
   object-fit: cover;
   cursor: pointer;

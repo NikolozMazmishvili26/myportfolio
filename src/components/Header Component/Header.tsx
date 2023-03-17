@@ -132,21 +132,22 @@ const HeaderImage = styled.img`
 
 // EmailBox styles
 
+const EmailTitle = styled.h4`
+  font-size: 14px;
+  color: var(--primary-color);
+  font-weight: 700;
+`;
+
 const EmailBox = styled.div`
   display: flex;
   align-items: center;
   gap: 7px;
   transition: all 0.2s;
+  cursor: pointer;
 
   @media screen and (max-width: 750px) {
     display: none;
   }
-`;
-
-const EmailTitle = styled.h4`
-  font-size: 14px;
-  color: var(--primary-color);
-  font-weight: 700;
 `;
 
 // EmailBox styles

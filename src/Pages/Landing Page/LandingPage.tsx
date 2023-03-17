@@ -1,15 +1,10 @@
 import React from "react";
 
 // import styled components
-import { Container } from "../../App";
+import AnimatedPage from "../../components/AnimatedPage";
 
 // import components
-import Footer from "../../components/Footer Component/Footer";
-import Header from "../../components/Header Component/Header";
-import Landing from "../../components/Landing Component/Landing";
-import Projects from "../../components/Projects Component/Projects";
-import Resume from "../../components/Resume Component/Resume";
-import Service from "../../components/Service Component/Service";
+import { Footer, Landing, Projects, Service } from "../../components";
 
 // interfaces
 interface LandingPageProps {
@@ -19,13 +14,13 @@ interface LandingPageProps {
 
 function LandingPage({ isDarkMode, setIsDarkMode }: LandingPageProps) {
   return (
-    <>
+    <AnimatedPage>
       <Landing />
       <Service isDarkMode={isDarkMode} />
       {/* <Resume isDarkMode={isDarkMode} /> */}
       <Projects isDarkMode={isDarkMode} />
       <Footer />
-    </>
+    </AnimatedPage>
   );
 }
 

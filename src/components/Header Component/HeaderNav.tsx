@@ -12,8 +12,6 @@ import works from "../../assets/works.svg";
 // import icons
 import { HiHome } from "react-icons/hi";
 
-const HeaderNavItemData = [{ id: 1 }];
-
 function HeaderNav({ isDarkMode }: HeaderNav) {
   return (
     <nav>

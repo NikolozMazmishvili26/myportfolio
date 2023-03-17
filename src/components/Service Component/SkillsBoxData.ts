@@ -3,20 +3,13 @@ export const SkillsBoxData = [
     id: 1,
     title: "FRONTEND APPS",
     description:
-      "Build client-side applications with modern features like SPA and maintain semantic coding style among other best practices for SEO optimisation. Use modern tech such as Nuxt (Vue.js), TailwindCSS, and GSAP.",
+      "I have dedicated over six months to studying React JS and have been honing my front-end development skills for a year. Throughout this time, I have acquired the proficiency to create precise designs that meet exacting specifications, as well as interact with the back-end and construct user-friendly websites.",
   },
 
   {
     id: 2,
-    title: "BACKEND APPS",
+    title: "FULLSTACK APPS",
     description:
-      "Build scalable and maintainable server applications using cutting-edge technologies such as Nest.js, Docker, and MongoDB",
-  },
-
-  {
-    id: 3,
-    title: "NATIVE APPS",
-    description:
-      "Use Flutter for building simple native mobile applications. Flutter is modern, fast, cross-platform, and popular.",
+      "While my experience in back-end development may be limited, I am currently devoting my efforts to learning Node.js. Through this process, I am gaining a solid foundation in its fundamentals, which, in turn, are enhancing my comprehension of web development as a whole.",
   },
 ];

@@ -1,5 +1,7 @@
 import { ContentContainer } from "../../App";
-import Projects from "../../components/Projects Component/Projects";
+
+// import components
+import { AnimatedPage, Projects } from "../../components";
 
 interface WorksProps {
   isDarkMode: boolean;
@@ -7,9 +9,11 @@ interface WorksProps {
 
 function Works({ isDarkMode }: WorksProps) {
   return (
-    <ContentContainer>
-      <Projects isDarkMode={isDarkMode} />
-    </ContentContainer>
+    <AnimatedPage>
+      <ContentContainer>
+        <Projects isDarkMode={isDarkMode} />
+      </ContentContainer>
+    </AnimatedPage>
   );
 }
 

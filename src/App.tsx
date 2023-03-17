@@ -1,14 +1,6 @@
 import { useState, useEffect } from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import classNames from "classnames";
-
-// import pages
-import LandingPage from "./Pages/Landing Page/LandingPage";
-import Works from "./Pages/Works Page/Works";
-import Header from "./components/Header Component/Header";
-import ResumePage from "./Pages/Resume Page/ResumePage";
 
 interface GlobalStyleProps {
   isDarkMode: boolean;
@@ -26,6 +18,7 @@ const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
   *{
     box-sizing: border-box;
   }
+
 
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -84,6 +77,25 @@ const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
     --dark-mode : #0d1017
   }
 
+
+  /* scrollbar default styles */
+
+  /* Change scrollbar color */
+  ::-webkit-scrollbar {
+    background-color: #f1f1f1; /* color of the scrollbar track */
+    width: 2px; /* width of the scrollbar */
+  }
+
+  /* Change scrollbar thumb color */
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color); /* color of the scrollbar thumb */
+  }
+
+  /* Change scrollbar corner color */
+  ::-webkit-scrollbar-corner {
+    background-color: #f1f1f1; /* color of the scrollbar corner */
+  }
+
 `;
 
 export const Container = styled.div<{ isDarkMode: boolean }>`
@@ -108,7 +120,14 @@ export const ContentContainer = styled.div`
   margin: auto;
 `;
 
+// import pages
+import { LandingPage, ResumePage, Works } from "./Pages";
+
+// import component
+import Header from "./components/Header Component/Header";
+
 function App() {
+  //
   const storedDarkMode = localStorage.getItem("darkMode");
   const [isDarkMode, setIsDarkMode] = useState<boolean>(
     storedDarkMode !== null ? JSON.parse(storedDarkMode) : false
