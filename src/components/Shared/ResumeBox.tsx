@@ -74,7 +74,7 @@ const ResumeTitle = styled.h1<{ isDarkMode: boolean }>`
   position: absolute;
   left: 22px;
   width: 160px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: ${(props) => (props.isDarkMode ? "#3b3737" : "black")};
 `;

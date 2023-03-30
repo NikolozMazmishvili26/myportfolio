@@ -57,7 +57,7 @@ function Header({ isDarkMode, setIsDarkMode }: HeaderProps) {
           <HeaderImage src={logo} alt="LOGO" />
           <EmailBox>
             <img src={email} alt="emailImage" />
-            <EmailTitle>nick.mazmishvili@gmail.com</EmailTitle>
+            <EmailTitle>nikoloz.mazmishvili21@gmail.com</EmailTitle>
           </EmailBox>
           {isDarkMode ? (
             <BgColorSwitcherImage
@@ -94,6 +94,7 @@ function Header({ isDarkMode, setIsDarkMode }: HeaderProps) {
         containerRef={containerRef}
         isNavbarOpen={isNavbarOpen}
         isDarkMode={isDarkMode}
+        setIsNavbarOpen={setIsNavbarOpen}
       />
       {/* END FOR MOBILE HEADER */}
     </>

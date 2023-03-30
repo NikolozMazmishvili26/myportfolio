@@ -30,7 +30,7 @@ function ContactContent() {
 
           <ResumeItem>
             <MdEmail size={19} />
-            <ResumeItemResult>nick.mazmishvili@gmail.com</ResumeItemResult>
+            <ResumeItemResult>nikoloz.mazmishvili21@gmail.com</ResumeItemResult>
           </ResumeItem>
 
           <ResumeItem>
@@ -52,7 +52,7 @@ const ResumeTitle = styled.h1`
   font-weight: 700;
 `;
 
-const ResumeDescription = styled.p`
+const ResumeDescription = styled.div`
   font-size: 14px;
   color: var(--primary-color);
   line-height: 1.5;

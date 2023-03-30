@@ -1,12 +1,18 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 // import component
 import { ResumeBox } from "../Shared";
 
+// import asset
+import resume from "../../assets/resume.pdf";
+
 function ResumeBtnContainer({ isDarkMode }: { isDarkMode: boolean }) {
   return (
     <BtnContainer>
-      <DownloadResumeBtn>Download My Resume</DownloadResumeBtn>
+      <Download href={resume} download>
+        <DownloadResumeBtn>Download My Resume</DownloadResumeBtn>
+      </Download>
       <ResumeBox
         isDarkMode={isDarkMode}
         title="Want to know about my Works In Development Process? 👉"
@@ -35,14 +41,23 @@ const BtnContainer = styled.div`
   }
 `;
 
+const Download = styled.a``;
+
 const DownloadResumeBtn = styled.button`
-  max-width: 192px;
-  width: 100%;
-  height: 40px;
+  font-family: "Roboto", sans-serif;
+  width: 185px;
+  /* width: 100%; */
+  height: 45px;
   background-color: #607393;
   border: none;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%);
   font-size: 16px;
   color: #ffffff;
   cursor: pointer;
+  border-radius: 7px;
+  transition-duration: 0.2s;
+
+  &:hover {
+    background-color: #4a576d;
+  }
 `;

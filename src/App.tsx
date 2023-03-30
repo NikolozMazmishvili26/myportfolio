@@ -8,11 +8,8 @@ interface GlobalStyleProps {
 
 const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
 
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
-
   html{
     line-height: 1.5;
-    font-family: 'Roboto', sans-serif !important;
   }
 
   *{
@@ -47,6 +44,7 @@ const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
   }
   body {
     line-height: 1;
+    font-family: 'Roboto', sans-serif;
     background-color: ${(props) =>
       props.isDarkMode ? "var(--dark-mode)" : "#f2f0ee"};
     @media screen and (min-width:750px){

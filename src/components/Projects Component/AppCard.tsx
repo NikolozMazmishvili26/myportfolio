@@ -32,6 +32,9 @@ const ApplicationImage = styled.img`
   width: 100%;
   height: auto;
   border-radius: 0.5rem;
+  @media screen and (min-width: 750px) {
+    height: 250px;
+  }
 `;
 
 const HoverBox = styled.div`
@@ -62,6 +65,7 @@ const ButtonContainer = styled.div`
 `;
 
 const LiveServerButton = styled.button`
+  font-family: "Roboto", sans-serif;
   width: 75%;
   height: 40px;
   background-color: var(--secondary-color);
@@ -74,6 +78,10 @@ const LiveServerButton = styled.button`
 
   @media screen and (min-width: 500px) {
     font-size: 18px;
+  }
+
+  @media screen and (min-width: 750px) {
+    height: 50px;
   }
 
   &:hover {
@@ -102,7 +110,7 @@ const ApplicationCard = styled.div`
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   &:hover {
     ${HoverBox} {

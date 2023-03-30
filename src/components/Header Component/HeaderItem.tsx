@@ -10,6 +10,7 @@ function HeaderItem({ item }: HeaderItemProps) {
 
   return (
     <NavItem>
+      {<image />}
       <img src={image} alt={imageAltValue} />
       {value}
     </NavItem>

@@ -7,6 +7,7 @@ import { ContentContainer } from "../../App";
 // import assets
 import letsTalkImage from "../../assets/talk.png";
 import avatarImage from "../../assets/avatar.svg";
+import { Link } from "react-router-dom";
 
 const heartVariants = {
   heartbeat: {
@@ -47,15 +48,17 @@ function Landing() {
               skills and excited for future projects with latest front-end tech.
             </LandingDescription>
             {/*  */}
-            <LetsTalkParentContainer>
-              <LetsTalkImage
-                src={letsTalkImage}
-                alt="talkImage"
-                variants={heartVariants}
-                initial="heartbeat"
-                animate="heartbeat"
-              />
-            </LetsTalkParentContainer>
+            <Link to="mailto:nikoloz.mazmishvili21@gmail.com">
+              <LetsTalkParentContainer>
+                <LetsTalkImage
+                  src={letsTalkImage}
+                  alt="talkImage"
+                  variants={heartVariants}
+                  initial="heartbeat"
+                  animate="heartbeat"
+                />
+              </LetsTalkParentContainer>
+            </Link>
             {/*  */}
           </LandingLeftSide>
           <LandingRightSide>

@@ -12,7 +12,7 @@ import {
 } from "../Service Component/Service";
 
 // import assets
-import app1 from "../../assets/redberry.png";
+import app1 from "../../assets/eCommerce.png";
 import app2 from "../../assets/todo.jpg";
 import ResumeBox from "../Shared/ResumeBox";
 
@@ -60,7 +60,7 @@ function Projects({ isDarkMode }: ProjectsProps) {
               {/* import appCard Component */}
               <AppCard
                 image={app1}
-                imageAlt="redberryApp"
+                imageAlt="eCommerce"
                 liveServerLink="google.com"
                 gitHubLink="github.com"
               />

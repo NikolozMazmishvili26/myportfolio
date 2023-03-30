@@ -4,6 +4,7 @@ import { ContentContainer } from "../../App";
 // import icons
 import { TbLayersLinked } from "react-icons/tb";
 import { AiOutlineInstagram } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -18,11 +19,13 @@ function Footer() {
             cursor="pointer"
             color="var(--primary-color)"
           />
-          <AiOutlineInstagram
-            size={23.5}
-            cursor="pointer"
-            color="var(--primary-color)"
-          />
+          <Link to="https://www.instagram.com/n.mazmishvili/" target="_blank">
+            <AiOutlineInstagram
+              size={23.5}
+              cursor="pointer"
+              color="var(--primary-color)"
+            />
+          </Link>
         </FooterSocialContainer>
       </FooterContainer>
     </ContentContainer>

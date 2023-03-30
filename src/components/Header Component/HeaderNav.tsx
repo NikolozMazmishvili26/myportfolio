@@ -70,7 +70,11 @@ const NavItem = styled.li`
   text-transform: capitalize;
 `;
 
-const StyledNavLink = styled(NavLink)<{ isDarkMode: boolean }>`
+interface NavLinkProps {
+  isDarkMode: boolean;
+}
+
+const StyledNavLink = styled(NavLink)<NavLinkProps>`
   text-decoration: none;
   color: var(--primary-color);
   &.active {

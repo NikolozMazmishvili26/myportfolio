@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 // import icons
@@ -6,11 +5,13 @@ import { SiLinkedin } from "react-icons/si";
 import { AiOutlineGithub } from "react-icons/ai";
 import { BsInstagram } from "react-icons/bs";
 
-// import HeaderItemData
-import { HeaderItemData } from "./HeaderItemData";
+// import assets
+import resume from "../../assets/resume.svg";
+import works from "../../assets/works.svg";
 
-// import components
-import HeaderItem from "./HeaderItem";
+// import icons
+import { HiHome } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 // interfaces
 
@@ -18,6 +19,7 @@ interface HeaderLeftDropdownProps {
   isNavbarOpen: boolean;
   containerRef: React.RefObject<HTMLDivElement>;
   isDarkMode: boolean;
+  setIsNavbarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface HeaderItemDataProps {
@@ -31,11 +33,8 @@ function HeaderLeftDropdown({
   isNavbarOpen,
   containerRef,
   isDarkMode,
+  setIsNavbarOpen,
 }: HeaderLeftDropdownProps) {
-  //
-  const [headerDataItem, setHeaderDataItem] =
-    useState<HeaderItemDataProps[]>(HeaderItemData);
-
   return (
     <>
       <HeaderNav
@@ -44,9 +43,29 @@ function HeaderLeftDropdown({
         isDarkMode={isDarkMode}
       >
         <HeaderList>
-          {headerDataItem?.map((item: HeaderItemDataProps) => {
-            return <HeaderItem key={item.id} item={item} />;
-          })}
+          <NavItem>
+            <HiHome size={22} />
+            <NavLink to="/" onClick={() => setIsNavbarOpen(false)}>
+              home
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <ImageBox>
+              <Image src={resume} alt="resume" />
+            </ImageBox>
+            <NavLink to="/resume" onClick={() => setIsNavbarOpen(false)}>
+              resume
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <ImageBox>
+              <Image src={works} alt="works" />
+            </ImageBox>
+            <NavLink to="/works" onClick={() => setIsNavbarOpen(false)}>
+              {" "}
+              works
+            </NavLink>
+          </NavItem>
         </HeaderList>
         {/* Nav SocialContainer */}
         <SocialContainer>
@@ -111,6 +130,7 @@ const HeaderList = styled.ul`
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 0.6rem;
 `;
 
@@ -123,3 +143,28 @@ const SocialContainer = styled.div`
   align-items: center;
   gap: 15px;
 `;
+
+const NavItem = styled.li`
+  font-size: 16px;
+  column-gap: 1rem;
+  text-transform: capitalize;
+  color: var(--primary-color);
+  margin-top: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+`;
+
+const NavLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  font-size: 15px;
+  line-height: 22px;
+`;
+
+const ImageBox = styled.div`
+  width: 22px;
+  height: 22px;
+`;
+
+const Image = styled.img``;
