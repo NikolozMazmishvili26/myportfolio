@@ -18,8 +18,12 @@ function AppCard({
       <ApplicationImage src={image} alt={imageAlt} />
       <HoverBox>
         <ButtonContainer>
-          <LiveServerButton>Live Server</LiveServerButton>
-          <GitHubButton>Github</GitHubButton>
+          <LiveServerButton href={liveServerLink} target="_blank">
+            Live Server
+          </LiveServerButton>
+          <GitHubButton href={gitHubLink} target="_blank">
+            Github
+          </GitHubButton>
         </ButtonContainer>
       </HoverBox>
     </ApplicationCard>
@@ -64,7 +68,7 @@ const ButtonContainer = styled.div`
   width: 100%;
 `;
 
-const LiveServerButton = styled.button`
+const LiveServerButton = styled.a`
   font-family: "Roboto", sans-serif;
   width: 75%;
   height: 40px;
@@ -75,6 +79,10 @@ const LiveServerButton = styled.button`
   border-radius: 7px;
   cursor: pointer;
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 
   @media screen and (min-width: 500px) {
     font-size: 18px;
