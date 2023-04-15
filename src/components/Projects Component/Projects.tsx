@@ -15,6 +15,7 @@ import {
 import app1 from "../../assets/eCommerce.png";
 import app2 from "../../assets/todo.jpg";
 import app3 from "../../assets/page.jpg";
+import app4 from "../../assets/project4.jpg";
 import ResumeBox from "../Shared/ResumeBox";
 
 // import component
@@ -76,6 +77,12 @@ function Projects({ isDarkMode }: ProjectsProps) {
                 imageAlt="todoApp"
                 liveServerLink="https://productonepage.netlify.app/"
                 gitHubLink="https://github.com/NikolozMazmishvili26/product-page-project"
+              />
+              <AppCard
+                image={app4}
+                imageAlt="todoApp"
+                liveServerLink="https://entertainmentapp2023.netlify.app/"
+                gitHubLink="https://github.com/NikolozMazmishvili26/entertainment-web-app"
               />
               {/* import appCard Component */}
             </ApplicationCardWrapper>

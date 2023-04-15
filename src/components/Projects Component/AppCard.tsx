@@ -36,6 +36,7 @@ const ApplicationImage = styled.img`
   width: 100%;
   height: auto;
   border-radius: 0.5rem;
+  object-fit: cover;
   @media screen and (min-width: 750px) {
     height: 250px;
   }
